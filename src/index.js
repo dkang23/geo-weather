@@ -10,6 +10,7 @@ const getWeather = (address) => {
       );
     })
     .then((data) => {
+      console.log(data.data.currently);
       return data;
     })
     .catch((err) => console.error(err));
