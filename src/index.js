@@ -1,5 +1,5 @@
-let GOOGLE_API_KEY = require('./google.js'); //replace me
-let DARKSKY_API_KEY = require('./darksky.js'); //replace me
+let GOOGLE_API_KEY = require('./google.js'); ////replace me
+let DARKSKY_API_KEY = require('./darksky.js'); ////replace me
 
 let axios = require('axios');
 const getWeather = (address) => {
