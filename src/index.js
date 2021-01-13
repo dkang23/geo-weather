@@ -1,7 +1,7 @@
-let axios = require('axios');
-let GOOGLE_API_KEY = require('./google.js');
-let DARKSKY_API_KEY = require('./darksky.js');
+let GOOGLE_API_KEY = require('./google.js'); //replace me
+let DARKSKY_API_KEY = require('./darksky.js'); //replace me
 
+let axios = require('axios');
 const getWeather = (address) => {
   return addressToGeo(address)
     .then((data) => {
@@ -10,7 +10,7 @@ const getWeather = (address) => {
       );
     })
     .then((data) => {
-      console.log(data.data.currently);
+      console.log(data.data);
       return data;
     })
     .catch((err) => console.error(err));
@@ -38,7 +38,7 @@ const replaceSpacesWithPluses = (address) => {
   pluses += spaceless[i];
   return pluses;
 };
-
+getWeather('803 elizabeth st, ridgefield, nj 07657, usa');
 getWeather('1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA');
 //1600+Amphitheatre+Pkwy,+Mountain+View,+CA+94043,+USA
 module.exports = { replaceSpacesWithPluses, addressToGeo, getWeather };
