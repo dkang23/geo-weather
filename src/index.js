@@ -1,6 +1,20 @@
-// import GOOGLE_API_KEY from './google.js';
 let axios = require('axios');
 let GOOGLE_API_KEY = require('./google.js');
+let DARKSKY_API_KEY = require('./darksky.js');
+
+const getWeather = (address) => {
+  return addressToGeo(address)
+    .then((data) => {
+      return axios.get(
+        `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${data.lat},${data.lng}`
+      );
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => console.error(err));
+};
+
 const addressToGeo = (address) => {
   const _address = replaceSpacesWithPluses(address);
   return axios
@@ -24,6 +38,6 @@ const replaceSpacesWithPluses = (address) => {
   return pluses;
 };
 
-addressToGeo('1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA');
+getWeather('1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA');
 //1600+Amphitheatre+Pkwy,+Mountain+View,+CA+94043,+USA
-module.exports = { replaceSpacesWithPluses, addressToGeo };
+module.exports = { replaceSpacesWithPluses, addressToGeo, getWeather };
